@@ -1,9 +1,8 @@
 import fetchedData from "../../data.json";
-//import path from "../../../public/assets/logos/pod.svg";
 const JobWindow = () => {
   console.log(fetchedData[9].logoBackground);
   return (
-    <div className="bg-white w-[327px] pl-[32px] pt-[49px] pb-[32px] relative">
+    <div className="bg-white w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative">
       <div
         className={`w-[50px] h-[50px] rounded-[15px] bg-[${fetchedData[9].logoBackground}] flex justify-center items-center absolute top-0 left-[32px] -translate-y-[50%]`}
       >
