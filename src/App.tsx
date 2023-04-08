@@ -1,7 +1,11 @@
+import Header from "./Components/Header";
+import LandingPage from "./Pages/LandingPage";
+
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-red-500">Hello, World!</h1>
+    <div className="h-screen bg-[#F2F2F2]">
+      <Header />
+      <LandingPage />
     </div>
   );
 }
