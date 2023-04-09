@@ -4,6 +4,11 @@ import JobWindow from "../Components/Landing/JobWindow";
 import fetchedData from "../data.json";
 const LandingPage = (props: {
   setIsFilterClicked: (isFilterClicked: boolean) => void;
+  modalState: {
+    locationValue: string;
+    isChecked: boolean;
+    isSubmitted: boolean;
+  };
 }) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [filterByTitleValue, setFilterByTitleValue] = useState<string>("");
@@ -18,6 +23,20 @@ const LandingPage = (props: {
       });
     } else {
       filteredArr = fetchedData;
+    }
+    if (props.modalState.isSubmitted) {
+      if (!props.modalState.isChecked) {
+        filteredArr = fetchedData.filter((item) => {
+          return item.location === props.modalState.locationValue;
+        });
+      } else {
+        filteredArr = fetchedData.filter((item) => {
+          return (
+            item.location === props.modalState.locationValue &&
+            item.contract === "Full Time"
+          );
+        });
+      }
     }
   }
   filter();

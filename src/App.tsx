@@ -4,7 +4,16 @@ import { useState } from "react";
 import FilterModal from "./UI/FilterModal";
 function App() {
   const [isFilterClicked, setIsFilterClicked] = useState<boolean>(false);
-
+  const [modalState, setModalState] = useState<{
+    locationValue: string;
+    isChecked: boolean;
+    isSubmitted: boolean;
+  }>({
+    locationValue: "",
+    isChecked: false,
+    isSubmitted: false,
+  });
+  console.log(modalState);
   return (
     <div className="min-h-screen max-h-fit bg-[#F2F2F2] relative">
       {isFilterClicked && (
@@ -18,11 +27,14 @@ function App() {
           }}
           className="w-[100%] h-[100%] bg-black absolute bg-opacity-[85%] z-10 flex justify-center  "
         >
-          <FilterModal />
+          <FilterModal setModalState={setModalState} />
         </div>
       )}
       <Header />
-      <LandingPage setIsFilterClicked={setIsFilterClicked} />
+      <LandingPage
+        setIsFilterClicked={setIsFilterClicked}
+        modalState={modalState}
+      />
     </div>
   );
 }
