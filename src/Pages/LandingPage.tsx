@@ -32,7 +32,7 @@ const LandingPage = (props: {
       } else {
         filteredArr = fetchedData.filter((item) => {
           return (
-            item.location === props.modalState.locationValue &&
+            item.location === props.modalState.locationValue ||
             item.contract === "Full Time"
           );
         });
