@@ -12,14 +12,15 @@ const LandingPage = (props: {
   function filter() {
     if (isSearchClicked) {
       filteredArr = fetchedData.filter((item) => {
-        return item.position === filterByTitleValue;
+        if (item.position === filterByTitleValue) {
+          return item.position === filterByTitleValue;
+        }
       });
     } else {
       filteredArr = fetchedData;
     }
   }
   filter();
-  console.log(filterByTitleValue);
   return (
     <div className="pb-[62px]">
       <Filter

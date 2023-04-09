@@ -11,7 +11,7 @@ function App() {
         <div
           onClick={(event) => {
             const target = event.target as Element;
-            console.log(target.id);
+            console.log(target);
             if (!target.id.includes("filter-modal")) {
               setIsFilterClicked(false);
             }
