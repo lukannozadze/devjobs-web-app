@@ -1,4 +1,7 @@
-const SearchIcon = (props: { class: string }) => {
+const SearchIcon = (props: {
+  class: string;
+  setIsSearchClicked: (isSearchClicked: boolean) => void;
+}) => {
   return (
     <svg
       width="48"
@@ -7,6 +10,9 @@ const SearchIcon = (props: { class: string }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={props.class}
+      onClick={(e) => {
+        props.setIsSearchClicked(true);
+      }}
     >
       <rect width="48" height="48" rx="5" fill="#5964E0" />
       <path

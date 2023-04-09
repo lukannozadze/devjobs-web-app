@@ -2,20 +2,61 @@ import { useState } from "react";
 import Filter from "../Components/Landing/Filter";
 import JobWindow from "../Components/Landing/JobWindow";
 import fetchedData from "../data.json";
-const LandingPage = () => {
+const LandingPage = (props: {
+  setIsFilterClicked: (isFilterClicked: boolean) => void;
+}) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  console.log(isClicked);
+  const [filterByTitleValue, setFilterByTitleValue] = useState<string>("");
+  const [isSearchClicked, setIsSearchClicked] = useState<boolean>(false);
+  let filteredArr: any[] = [];
+  function filter() {
+    if (isSearchClicked) {
+      filteredArr = fetchedData.filter((item) => {
+        return item.position === filterByTitleValue;
+      });
+    } else {
+      filteredArr = fetchedData;
+    }
+  }
+  filter();
+  console.log(filterByTitleValue);
   return (
     <div className="pb-[62px]">
-      <Filter />
+      <Filter
+        setIsFilterClicked={props.setIsFilterClicked}
+        setFilterByTitleValue={setFilterByTitleValue}
+        setIsSearchClicked={setIsSearchClicked}
+      />
       <div className="flex flex-col items-center gap-[49px]">
-        {fetchedData.map((item, index) => {
+        {filteredArr.map((item, index) => {
           if (!isClicked) {
             if (index <= 11) {
-              return <JobWindow />;
+              return (
+                <JobWindow
+                  key={item.id}
+                  logo={item.logo}
+                  logoBackground={item.logoBackground}
+                  position={item.position}
+                  postedAt={item.postedAt}
+                  contract={item.contract}
+                  company={item.company}
+                  location={item.location}
+                />
+              );
             }
           } else {
-            return <JobWindow />;
+            return (
+              <JobWindow
+                key={item.id}
+                logo={item.logo}
+                logoBackground={item.logoBackground}
+                position={item.position}
+                postedAt={item.postedAt}
+                contract={item.contract}
+                company={item.company}
+                location={item.location}
+              />
+            );
           }
         })}
       </div>

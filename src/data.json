@@ -34,7 +34,7 @@
     "id": 2,
     "company": "Blogr",
     "logo": "./assets/logos/blogr.svg",
-    "logoBackground": "#e54b24",
+    "logoBackground": "#E54B24",
     "position": "Haskell and PureScript Dev",
     "postedAt": "20h ago",
     "contract": "Part Time",
