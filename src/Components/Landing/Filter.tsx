@@ -51,10 +51,10 @@ const Filter = (props: {
 
         <FilterIcon
           setIsFilterClicked={props.setIsFilterClicked}
-          class="absolute top-[30px] right-[88px] z-0"
+          class="absolute top-[35px] right-[88px] z-0"
         />
         <SearchIcon
-          class="absolute top-[16px] right-4"
+          class="absolute top-[21px] right-4"
           setIsValidAndClicked={props.setIsValidAndClicked}
           inputVal={watch("filter")}
         />

@@ -13,6 +13,8 @@ const LandingPage = (props: {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [filterByTitleValue, setFilterByTitleValue] = useState<string>("");
   const [isValidAndClicked, setIsValidAndClicked] = useState<boolean>(false);
+  const [isBtnVisible, setIsBtnVisible] = useState<boolean>(false);
+
   let filteredArr: any[] = [];
   function filter() {
     if (isValidAndClicked) {
@@ -24,6 +26,7 @@ const LandingPage = (props: {
     } else {
       filteredArr = fetchedData;
     }
+
     if (props.modalState.isSubmitted) {
       if (!props.modalState.isChecked) {
         filteredArr = fetchedData.filter((item) => {
@@ -39,7 +42,11 @@ const LandingPage = (props: {
       }
     }
   }
-
+  useEffect(() => {
+    if (props.modalState.isSubmitted) {
+      props.setIsFilterClicked(false);
+    }
+  }, [props.modalState.isSubmitted]);
   filter();
   return (
     <div className="pb-[62px]">
@@ -64,6 +71,8 @@ const LandingPage = (props: {
                   location={item.location}
                 />
               );
+            } else if (index <= 10) {
+              setIsBtnVisible(false);
             }
           } else {
             return (
