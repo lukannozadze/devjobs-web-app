@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filter from "../Components/Landing/Filter";
 import JobWindow from "../Components/Landing/JobWindow";
 import fetchedData from "../data.json";
@@ -12,10 +12,10 @@ const LandingPage = (props: {
 }) => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [filterByTitleValue, setFilterByTitleValue] = useState<string>("");
-  const [isSearchClicked, setIsSearchClicked] = useState<boolean>(false);
+  const [isValidAndClicked, setIsValidAndClicked] = useState<boolean>(false);
   let filteredArr: any[] = [];
   function filter() {
-    if (isSearchClicked) {
+    if (isValidAndClicked) {
       filteredArr = fetchedData.filter((item) => {
         if (item.position === filterByTitleValue) {
           return item.position === filterByTitleValue;
@@ -39,13 +39,14 @@ const LandingPage = (props: {
       }
     }
   }
+
   filter();
   return (
     <div className="pb-[62px]">
       <Filter
         setIsFilterClicked={props.setIsFilterClicked}
         setFilterByTitleValue={setFilterByTitleValue}
-        setIsSearchClicked={setIsSearchClicked}
+        setIsValidAndClicked={setIsValidAndClicked}
       />
       <div className="flex flex-col items-center gap-[49px]">
         {filteredArr.map((item, index) => {
@@ -87,7 +88,7 @@ const LandingPage = (props: {
           }}
           className="bg-[#5964E0] py-4 px-[30px] rounded-[5px]"
         >
-          {isClicked ? "show Less" : "Show More"}
+          {isClicked ? "Show Less" : "Show More"}
         </button>
       </div>
     </div>

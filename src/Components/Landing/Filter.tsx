@@ -1,28 +1,62 @@
 import FilterIcon from "../../UI/FilterIcon";
 import SearchIcon from "../../UI/SearchIcon";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useEffect } from "react";
+interface Inputs {
+  filter: string;
+}
 const Filter = (props: {
   setIsFilterClicked: (isFilterClicked: boolean) => void;
   setFilterByTitleValue: (filterByTitleValue: string) => void;
-  setIsSearchClicked: (isSearchClicked: boolean) => void;
+  setIsValidAndClicked: (isValidAndClicked: boolean) => void;
 }) => {
+  const schema = yup.object({
+    filter: yup
+      .string()
+      .required("Can't be empty")
+      .matches(/^[A-Za-z\s]*$/, "Wrong Format!"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  useEffect(() => {
+    props.setFilterByTitleValue(watch("filter"));
+  }, [watch("filter")]);
   return (
-    <form className="flex justify-center -translate-y-[50%]">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      id="filter-form"
+      className="flex justify-center -translate-y-[50%]"
+    >
       <div className="w-[327px] relative">
         <input
-          className="py-[32px] w-[100%] pl-6"
+          {...register("filter")}
+          className={`py-[32px] w-[100%] pl-6 outline-none ${
+            errors.filter ? "border-[1px] border-red-600" : ""
+          }`}
           type="text"
           placeholder="Filter by title..."
-          onChange={(e) => {
-            props.setFilterByTitleValue(e.target.value);
-          }}
         />
+
         <FilterIcon
           setIsFilterClicked={props.setIsFilterClicked}
           class="absolute top-[30px] right-[88px] z-0"
         />
         <SearchIcon
           class="absolute top-[16px] right-4"
-          setIsSearchClicked={props.setIsSearchClicked}
+          setIsValidAndClicked={props.setIsValidAndClicked}
+          inputVal={watch("filter")}
         />
       </div>
     </form>

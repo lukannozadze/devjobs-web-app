@@ -13,7 +13,7 @@ function App() {
     isChecked: false,
     isSubmitted: false,
   });
-  console.log(modalState);
+
   return (
     <div className="min-h-screen max-h-fit bg-[#F2F2F2] relative">
       {isFilterClicked && (
