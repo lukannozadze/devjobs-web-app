@@ -22,7 +22,7 @@ const Filter = (props: {
     <form id="filter-form" className="flex justify-center -translate-y-[50%]">
       <div className="w-[327px] relative">
         <input
-          className="py-[32px] w-[100%] pl-6 outline-none"
+          className="py-[32px] w-[100%] pl-6 rounded-md outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:font-kumbh placeholder:text-[#19202D] placeholder:opacity-50"
           type="text"
           placeholder="Filter by title..."
           onChange={(e) => {

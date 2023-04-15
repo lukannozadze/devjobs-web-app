@@ -19,7 +19,7 @@ const JobWindow = (props: props) => {
   } = props;
 
   return (
-    <div className="bg-white w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative">
+    <div className="bg-white w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative font-kumbh">
       <div
         className={`w-[50px] h-[50px] rounded-[15px] flex justify-center items-center absolute top-0 left-[32px] -translate-y-[50%]`}
         style={{ backgroundColor: `${logoBackground}` }}
@@ -27,11 +27,21 @@ const JobWindow = (props: props) => {
         <img src={logo} alt="logo" />
       </div>
       <div className="flex flex-col gap-4">
-        <span className="leading-[19.84px]">{`${postedAt} . ${contract}`}</span>
-        <h2 className="leading-[24.8px] font-bold">{position}</h2>
-        <span className="leading-[19.84px] mb-[44px]">{company}</span>
+        <div className="flex gap-3">
+          <span className="leading-[19.84px] text-base text-[#6E8098]">{`${postedAt}`}</span>
+          <span className="text-[#6E8098]">&bull;</span>
+          <span className="leading-[19.84px] text-base text-[#6E8098]">{`${postedAt}`}</span>
+        </div>
+        <h2 className="leading-[24.8px] font-bold text-[#19202D] text-[20px]">
+          {position}
+        </h2>
+        <span className="leading-[19.84px] text-base text-[#6E8098] mb-[44px]">
+          {company}
+        </span>
       </div>
-      <span className="leading-[17.36px] ">{location}</span>
+      <span className="leading-[17.36px] text-[14px] text-[#5964E0] font-bold ">
+        {location}
+      </span>
     </div>
   );
 };
