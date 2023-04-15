@@ -1,6 +1,6 @@
 const SearchIcon = (props: {
   class: string;
-  setIsValidAndClicked: (isValidAndClicked: boolean) => void;
+  setIsClicked: (isClicked: boolean) => void;
   inputVal: string | undefined;
 }) => {
   return (
@@ -12,14 +12,9 @@ const SearchIcon = (props: {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={props.class}
-        onClick={() => {
-          if (
-            props.inputVal &&
-            props.inputVal !== "" &&
-            props.inputVal.match(/^[A-Za-z\s]*$/)
-          ) {
-            props.setIsValidAndClicked(true);
-          }
+        onClick={(e) => {
+          e.preventDefault();
+          props.setIsClicked(true);
         }}
       >
         <rect width="48" height="48" rx="5" fill="#5964E0" />
