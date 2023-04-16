@@ -2,8 +2,10 @@ import Header from "./Components/Header";
 import LandingPage from "./Pages/LandingPage";
 import { useState } from "react";
 import FilterModal from "./UI/FilterModal";
+import DetailPage from "./Pages/DetailPage";
 function App() {
   const [isFilterClicked, setIsFilterClicked] = useState<boolean>(false);
+  const [active, setActive] = useState<number>(0);
   const [modalState, setModalState] = useState<{
     locationValue: string;
     isChecked: boolean;
@@ -15,7 +17,7 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen max-h-fit bg-[#F2F2F2] relative">
+    <div className="min-h-screen max-h-fit bg-[#F2F2F2] relative font-kumbh">
       {isFilterClicked && (
         <div
           onClick={(event) => {
@@ -31,10 +33,15 @@ function App() {
         </div>
       )}
       <Header />
-      <LandingPage
-        setIsFilterClicked={setIsFilterClicked}
-        modalState={modalState}
-      />
+      {active === 0 ? (
+        <LandingPage
+          setIsFilterClicked={setIsFilterClicked}
+          modalState={modalState}
+          setActive={setActive}
+        />
+      ) : (
+        <DetailPage active={active} />
+      )}
     </div>
   );
 }

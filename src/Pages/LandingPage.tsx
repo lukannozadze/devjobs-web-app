@@ -4,6 +4,7 @@ import JobWindow from "../Components/Landing/JobWindow";
 import fetchedData from "../data.json";
 const LandingPage = (props: {
   setIsFilterClicked: (isFilterClicked: boolean) => void;
+  setActive: (active: number) => void;
   modalState: {
     locationValue: string;
     isChecked: boolean;
@@ -82,6 +83,7 @@ const LandingPage = (props: {
           return (
             <JobWindow
               key={item.id}
+              id={item.id}
               logo={item.logo}
               logoBackground={item.logoBackground}
               position={item.position}
@@ -89,6 +91,7 @@ const LandingPage = (props: {
               contract={item.contract}
               company={item.company}
               location={item.location}
+              setActive={props.setActive}
             />
           );
         })}

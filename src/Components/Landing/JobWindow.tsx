@@ -6,20 +6,29 @@ interface props {
   contract: string;
   company: string;
   location: string;
+  id: number;
+  setActive: (active: number) => void;
 }
 const JobWindow = (props: props) => {
   const {
     logo,
+    id,
     logoBackground,
     position,
     contract,
     postedAt,
     company,
     location,
+    setActive,
   } = props;
 
   return (
-    <div className="bg-white w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative font-kumbh">
+    <div
+      onClick={() => {
+        setActive(id);
+      }}
+      className="bg-white w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative font-kumbh cursor-pointer"
+    >
       <div
         className={`w-[50px] h-[50px] rounded-[15px] flex justify-center items-center absolute top-0 left-[32px] -translate-y-[50%]`}
         style={{ backgroundColor: `${logoBackground}` }}
@@ -30,7 +39,7 @@ const JobWindow = (props: props) => {
         <div className="flex gap-3">
           <span className="leading-[19.84px] text-base text-[#6E8098]">{`${postedAt}`}</span>
           <span className="text-[#6E8098]">&bull;</span>
-          <span className="leading-[19.84px] text-base text-[#6E8098]">{`${postedAt}`}</span>
+          <span className="leading-[19.84px] text-base text-[#6E8098]">{`${contract}`}</span>
         </div>
         <h2 className="leading-[24.8px] font-bold text-[#19202D] text-[20px]">
           {position}

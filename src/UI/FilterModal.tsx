@@ -27,8 +27,8 @@ const FilterModal = (props: {
         <input
           id="filter-modal-input"
           type="text"
-          placeholder="Filter by location"
-          className="w-[65%] pl-6 outline-none"
+          placeholder="Filter by location..."
+          className="w-[75%] pl-6 outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:text-[#19202D] placeholder:opacity-50  "
           onChange={(e) => {
             setObj({ ...obj, locationValue: e.target.value });
           }}
