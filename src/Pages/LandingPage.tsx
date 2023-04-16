@@ -5,6 +5,7 @@ import fetchedData from "../data.json";
 const LandingPage = (props: {
   setIsFilterClicked: (isFilterClicked: boolean) => void;
   setActive: (active: number) => void;
+  isDark: boolean;
   modalState: {
     locationValue: string;
     isChecked: boolean;
@@ -77,6 +78,7 @@ const LandingPage = (props: {
         setFilterByTitleValue={setFilterByTitleValue}
         setIsClicked={setIsClicked}
         setIsEmpty={setIsEmpty}
+        isDark={props.isDark}
       />
       <div className="flex flex-col items-center gap-[49px]">
         {filteredArr.map((item) => {
@@ -92,6 +94,7 @@ const LandingPage = (props: {
               company={item.company}
               location={item.location}
               setActive={props.setActive}
+              isDark={props.isDark}
             />
           );
         })}

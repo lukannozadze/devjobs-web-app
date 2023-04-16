@@ -1,16 +1,24 @@
 import fetchData from "../../data.json";
-const CompanyDescription = (props: { active: number }) => {
+const CompanyDescription = (props: { active: number; isDark: boolean }) => {
   const { active } = props;
   console.log(fetchData[active]);
   return (
-    <div className="w-[87.3%] bg-white flex flex-col items-center rounded-md -translate-y-[15px] relative">
+    <div
+      className={`w-[87.3%] ${
+        props.isDark ? "bg-[#19202D]" : "bg-white"
+      } flex flex-col items-center rounded-md -translate-y-[15px] relative duration-500`}
+    >
       <div
         className="w-[50px] h-[50px] rounded-[15px] flex justify-center items-center absolute -top-[25px]"
         style={{ background: `${fetchData[active - 1].logoBackground}` }}
       >
         <img src={fetchData[active - 1].logo} alt="logo" />
       </div>
-      <h2 className="mt-[49px] mb-[13px] text-[20px] leading-[24.8px] font-bold">
+      <h2
+        className={`${
+          props.isDark ? "text-white" : ""
+        }  mt-[49px] mb-[13px] text-[20px] leading-[24.8px] font-bold duration-500`}
+      >
         {fetchData[active - 1].company}
       </h2>
       <span className="mb-[27px] text-base leading-[19.84px] text-[#6E8098]">

@@ -7,6 +7,7 @@ const FilterModal = (props: {
     isChecked: boolean;
     isSubmitted: boolean;
   }) => void;
+  isDark: boolean;
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [obj, setObj] = useState({
@@ -20,7 +21,9 @@ const FilterModal = (props: {
   return (
     <form
       id="filter-modal"
-      className="w-[87.2%] bg-white font-kumbh h-[217px] absolute top-[225px] flex flex-col items-center gap-[23px] rounded-md pt-6"
+      className={`w-[87.2%] ${
+        props.isDark ? "bg-[#19202D]" : "bg-white"
+      } font-kumbh h-[217px] absolute top-[225px] flex flex-col items-center gap-[23px] rounded-md pt-6`}
     >
       <div className="flex self-start pl-6">
         <LocationIcon />
@@ -28,7 +31,11 @@ const FilterModal = (props: {
           id="filter-modal-input"
           type="text"
           placeholder="Filter by location..."
-          className="w-[75%] pl-6 outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:text-[#19202D] placeholder:opacity-50  "
+          className={`w-[75%] pl-6 outline-none placeholder:text-base placeholder:leading-[19.84px]  placeholder:opacity-50  ${
+            props.isDark
+              ? "bg-[#19202D] placeholder:text-white placeholder:text-opacity-50 text-white"
+              : "bg-white placeholder:text-[#19202D]"
+          }`}
           onChange={(e) => {
             setObj({ ...obj, locationValue: e.target.value });
           }}
@@ -47,13 +54,17 @@ const FilterModal = (props: {
           id="filter-modal-checkbox"
           className={`w-6 h-6 ${
             !isChecked ? "bg-[#19202D] opacity-10 " : "bg-[#5964E0]  "
-          } flex justify-center items-center`}
+          } flex justify-center items-center ${
+            props.isDark && !isChecked ? "bg-white bg-opacity-10" : ""
+          }`}
         >
           {isChecked && <CorrectIcon setModalState={props.setModalState} />}
         </div>
         <span
           id="filter-modal-contract"
-          className="text-base leading-[19.84px] font-bold"
+          className={`${
+            props.isDark ? "text-white" : ""
+          } text-base leading-[19.84px] font-bold`}
         >
           Full Time Only
         </span>
