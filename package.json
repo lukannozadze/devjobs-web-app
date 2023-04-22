@@ -13,6 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-form-hook": "^0.0.1",
+    "react-responsive": "^9.0.2",
     "react-svg": "^16.1.7",
     "yup": "^1.0.2"
   },
