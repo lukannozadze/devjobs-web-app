@@ -42,6 +42,7 @@ function App() {
         <LandingPage
           setIsFilterClicked={setIsFilterClicked}
           modalState={modalState}
+          setModalState={setModalState}
           setActive={setActive}
           isDark={isDark}
         />

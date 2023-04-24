@@ -11,6 +11,11 @@ const LandingPage = (props: {
     isChecked: boolean;
     isSubmitted: boolean;
   };
+  setModalState: (modalState: {
+    locationValue: string;
+    isChecked: boolean;
+    isSubmitted: boolean;
+  }) => void;
 }) => {
   const [filterByTitleValue, setFilterByTitleValue] = useState<string>("");
   const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -78,9 +83,11 @@ const LandingPage = (props: {
         setFilterByTitleValue={setFilterByTitleValue}
         setIsClicked={setIsClicked}
         setIsEmpty={setIsEmpty}
+        setModalState={props.setModalState}
+        modalState={props.modalState}
         isDark={props.isDark}
       />
-      <div className="flex flex-col items-center gap-[49px]">
+      <div className="flex flex-col items-center gap-[49px] md:flex-row md:flex-wrap md:justify-center">
         {filteredArr.map((item) => {
           return (
             <JobWindow

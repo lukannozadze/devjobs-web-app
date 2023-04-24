@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-
 const ModeToggler = (props: {
   setIsDark: (isDark: boolean) => void;
   isDark: boolean;
 }) => {
-  const [cx, setCx] = useState<number>(12);
   const { isDark, setIsDark } = props;
 
   return (
