@@ -125,7 +125,6 @@ const Filter = (props: {
                     props.setSearchBtnIsClicked(true);
                   }
                   else{
-                    console.log("dagdag");
                     props.setModalState({
                       ...props.modalState,
                       isSubmitted: true,

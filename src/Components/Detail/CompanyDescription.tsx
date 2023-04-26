@@ -1,7 +1,6 @@
 import fetchData from "../../data.json";
 const CompanyDescription = (props: { active: number; isDark: boolean }) => {
   const { active } = props;
-  console.log(fetchData[active]);
   return (
     <div
       className={`w-[87.3%] ${
