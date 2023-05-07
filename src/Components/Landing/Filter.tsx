@@ -39,7 +39,7 @@ const Filter = (props: {
           </div>
         )}
         <input
-          className={`py-[32px] w-[100%] pl-6 md:pl-[57px] rounded-md outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:font-kumbh  ${
+          className={`py-[32px] w-[100%] pl-6 md:pl-[57px] rounded-md outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:font-kumbh cursor-pointer  ${
             props.isDark
               ? "bg-[#19202D] placeholder:text-white placeholder:text-opacity-50 text-white "
               : "placeholder:text-[#19202D] placeholder:opacity-50"
@@ -66,7 +66,7 @@ const Filter = (props: {
                 id="filter-modal-input"
                 type="text"
                 placeholder="Filter by location..."
-                className={`w-[100%] py-[32px] pl-[57px] outline-none placeholder:text-base placeholder:leading-[19.84px]  placeholder:opacity-50  ${
+                className={`w-[100%] py-[32px] pl-[57px] outline-none placeholder:text-base placeholder:leading-[19.84px]  placeholder:opacity-50 cursor-pointer  ${
                   props.isDark
                     ? "bg-[#19202D] placeholder:text-white placeholder:text-opacity-50 text-white duration-500"
                     : "bg-white placeholder:text-[#19202D] duration-500"
@@ -82,7 +82,7 @@ const Filter = (props: {
                 })
               }
               id="filter-modal-checkbox-container"
-              className={`flex items-center self-start pl-6 gap-4 py-[18px] w-full rounded-tr-md rounded-br-md  ${
+              className={`flex items-center self-start pl-6 gap-4 py-[18px] w-full rounded-tr-md rounded-br-md cursor-pointer  ${
                 props.isDark ? "bg-[#19202D] " : "bg-white"
               } duration-500`}
             >
@@ -96,7 +96,7 @@ const Filter = (props: {
                   props.isDark && !props.modalState.isChecked
                     ? "bg-white bg-opacity-10 "
                     : ""
-                }`}
+                } hover:bg-[#5964E0]`}
               >
                 {props.modalState.isChecked && (
                   <CorrectIcon setModalState={props.setModalState} />
@@ -117,7 +117,7 @@ const Filter = (props: {
                     isSubmitted: true,
                   });
                 }}
-                className="w-[80px] bg-[#5964E0] py-4 text-base leading-[19.84px] text-white font-bold rounded-[5px]  "
+                className="w-[80px] bg-[#5964E0] py-4 text-base leading-[19.84px] text-white font-bold rounded-[5px] hover:bg-[#939BF4]"
                 id="filter-modal-btn"
               >
                 Search

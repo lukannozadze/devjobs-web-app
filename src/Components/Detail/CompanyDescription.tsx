@@ -31,7 +31,7 @@ const CompanyDescription = (props: { active: number; isDark: boolean }) => {
             {fetchData[active - 1].company.toLowerCase() + ".com"}
           </span>
         </div>
-        <button className="mb-[32px] bg-[#5964E0] bg-opacity-10 py-4 px-5 rounded-[5px] text-[#5964E0] text-base leading-[19.84px] font-bold cursor-pointer md:mb-0 md:w-[147px] ">
+        <button className="mb-[32px] bg-[#5964E0] bg-opacity-10 py-4 px-5 rounded-[5px] text-[#5964E0] text-base leading-[19.84px] font-bold cursor-pointer md:mb-0 md:w-[147px] hover:bg-[#939BF4] ">
           Company Site
         </button>
       </div>
