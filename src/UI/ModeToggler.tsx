@@ -16,7 +16,13 @@ const ModeToggler = (props: {
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="48" height="24" rx="12" fill="white" />
-      <circle cx={isDark ? 35 : 12} cy="12" r="7" fill="#5964E0" />
+      <circle
+        className="hover:fill-[#939BF4]"
+        cx={isDark ? 35 : 12}
+        cy="12"
+        r="7"
+        fill="#5964E0"
+      />
     </svg>
   );
 };

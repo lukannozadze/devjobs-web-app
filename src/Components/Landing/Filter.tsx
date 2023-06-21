@@ -15,7 +15,6 @@ const Filter = (props: {
     isChecked: boolean;
     isSubmitted: boolean;
   };
-  setSearchBtnIsClicked:(SearchBtnIsClicked:boolean)=>void;
   isDark: boolean;
   setModalState: (modalState: {
     locationValue: string;
@@ -24,8 +23,8 @@ const Filter = (props: {
   }) => void;
 }) => {
   const [TitleVal, setTitleVal] = useState<string>("");
+
   const isTabletOrMobile = useMediaQuery({ query: "(min-width: 768px)" });
-  const isDesktopOrTablet = useMediaQuery({query:"(min-width:1148px)"});
   useEffect(() => {
     if (TitleVal !== "") {
       props.setFilterByTitleValue(TitleVal);
@@ -33,21 +32,22 @@ const Filter = (props: {
   }, [TitleVal]);
   return (
     <form id="filter-form" className="flex justify-center -translate-y-[50%]">
-      <div className="w-[327px] relative md:w-[700px] md:flex sxl:w-[1150px] ">
+      <div className="w-[327px] relative md:w-[689px] md:flex ">
         {isTabletOrMobile && (
           <div className="absolute top-[32px] left-6">
             <BlueSearchIcon />
           </div>
         )}
         <input
-          className={`py-[32px] w-[100%] pl-6 md:pl-[57px] rounded-md outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:font-kumbh  ${
+          className={`py-[32px] w-[100%] pl-6 md:pl-[57px] rounded-md outline-none placeholder:text-base placeholder:leading-[19.84px] placeholder:font-kumbh cursor-pointer  ${
             props.isDark
               ? "bg-[#19202D] placeholder:text-white placeholder:text-opacity-50 text-white "
               : "placeholder:text-[#19202D] placeholder:opacity-50"
           } duration-500 md:w-[32.2%] md:rounded-br-none md:rounded-tr-none`}
           type="text"
-          placeholder={isDesktopOrTablet?"Filter by title, companies, expertise...":"Filter by title..."}
+          placeholder="Filter by title..."
           onChange={(e) => {
+           
             if (e.target.value === "") {
               props.setIsEmpty(true);
             } else {
@@ -55,6 +55,7 @@ const Filter = (props: {
             }
             setTitleVal(e.target.value);
           }}
+        
         />
         {isTabletOrMobile && <div className="bg-[#6E8098] w-[1px]"></div>}
         {isTabletOrMobile && (
@@ -64,13 +65,17 @@ const Filter = (props: {
                 <LocationIcon />
               </div>
               <input
-                onChange={(e)=>{
-                  props.setModalState({...props.modalState,locationValue:e.target.value})
-                }}
+              onChange={(e)=>{
+                console.log(e.target.value);
+                props.setModalState({
+                  ...props.modalState,
+                  locationValue: e.target.value
+                })
+              }}
                 id="filter-modal-input"
                 type="text"
                 placeholder="Filter by location..."
-                className={`w-[100%] py-[32px] pl-[57px] outline-none placeholder:text-base placeholder:leading-[19.84px]  placeholder:text-opacity-50  ${
+                className={`w-[100%] py-[32px] pl-[57px] outline-none placeholder:text-base placeholder:leading-[19.84px]  placeholder:opacity-50 cursor-pointer  ${
                   props.isDark
                     ? "bg-[#19202D] placeholder:text-white placeholder:text-opacity-50 text-white duration-500"
                     : "bg-white placeholder:text-[#19202D] duration-500"
@@ -81,7 +86,7 @@ const Filter = (props: {
             <div
               
               id="filter-modal-checkbox-container"
-              className={`flex items-center self-start pl-6 gap-4 py-[18px] w-full rounded-tr-md rounded-br-md sxl:gap-[46px]   ${
+              className={`flex items-center self-start pl-6 gap-4 py-[18px] w-full rounded-tr-md rounded-br-md cursor-pointer  ${
                 props.isDark ? "bg-[#19202D] " : "bg-white"
               } duration-500`}
             >
@@ -91,18 +96,17 @@ const Filter = (props: {
                   ...props.modalState,
                   isChecked: !props.modalState.isChecked,
                 })
-               
               }
                 id="filter-modal-checkbox"
                 className={`w-6 h-6 ${
                   !props.modalState.isChecked
                     ? "bg-[#19202D] opacity-10 "
                     : "bg-[#5964E0]  "
-                } flex justify-center items-center rounded-sm ${
+                } flex justify-center items-center ${
                   props.isDark && !props.modalState.isChecked
-                    ? "bg-white"
+                    ? "bg-white bg-opacity-10 "
                     : ""
-                }`}
+                } hover:bg-[#5964E0]`}
               >
                 {props.modalState.isChecked && (
                   <CorrectIcon setModalState={props.setModalState} />
@@ -114,26 +118,19 @@ const Filter = (props: {
                   props.isDark ? "text-white" : ""
                 } text-base leading-[19.84px] font-bold`}
               >
-               {isDesktopOrTablet?"Full Time Only":"Full Time"}
+                Full Time
               </span>
               <button
-                onClick={(e) => {
+                onClick={(e) => {      
                   e.preventDefault();
-                  
-
-                  if(TitleVal!==""){
-                    props.setSearchBtnIsClicked(true);
-                  }
-                  else{
-                    props.setModalState({
-                      ...props.modalState,
-                      isSubmitted: true,
-                    });
-                  } 
                  
+                  props.setModalState({
+                    ...props.modalState,
+                    isSubmitted: true,
+                  });
                 }}
-                className="w-[80px] bg-[#5964E0] py-4 text-base leading-[19.84px] text-white font-bold rounded-[5px] sxl:w-[123px]  "
-                id="filter-modal-btn "
+                className="w-[80px] bg-[#5964E0] py-4 text-base leading-[19.84px] text-white font-bold rounded-[5px] hover:bg-[#939BF4]"
+                id="filter-modal-btn"
               >
                 Search
               </button>

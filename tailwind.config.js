@@ -6,10 +6,6 @@ export default {
       fontFamily: {
         kumbh: ["Kumbh Sans", "sans-serif"],
       },
-      screens:{
-        "1.5xl":"1547px",
-        "sxl":"1148px"
-      }
     },
   },
   plugins: [],

@@ -21,81 +21,128 @@ const LandingPage = (props: {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [filteredArr, setFilteredArr] = useState<any[]>(fetchedData);
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
-  const [searchBtnIsClicked,setSearchBtnIsClicked] = useState<boolean>(false);
+ let tempArr:any;
+
+
+  const filterByTitle = () =>{
+     tempArr = fetchedData.filter((item)=>{
+      return (
+        item.position.includes(filterByTitleValue) ||
+        item.position
+          .toLowerCase()
+          .includes(filterByTitleValue.toLowerCase()) ||
+        item.position
+          .toUpperCase()
+          .includes(filterByTitleValue.toUpperCase())
+      );
+    })
+  }
+  
+  const filterByLocation = () =>{
+     tempArr = fetchedData.filter((item) => {
+            
+      return (
+        item.location.includes(props.modalState.locationValue) ||
+        item.location
+        .toLowerCase()
+        .includes(props.modalState.locationValue.toLowerCase()) ||
+        item.location
+        .toUpperCase()
+        .includes(props.modalState.locationValue.toUpperCase()) 
+        );
+      });
+
+  }
+  
+  const filterByLocationAndContract = () =>{
+     tempArr = fetchedData.filter((item) => {
+      console.log(item.location.includes(props.modalState.locationValue));
+      return (
+        (item.location.includes(props.modalState.locationValue) ||
+        item.location
+        .toLowerCase()
+        .includes(props.modalState.locationValue.toLowerCase()) ||
+         item.location
+        .toUpperCase()
+        .includes(props.modalState.locationValue.toUpperCase())) && item.contract === 'Full Time'
+        );
+      });
+  }
+
+  const filterByTitleAndContract = () =>{
+    tempArr = fetchedData.filter((item)=>{
+      return (
+        (item.position.includes(filterByTitleValue) ||
+        item.position
+          .toLowerCase()
+          .includes(filterByTitleValue.toLowerCase()) ||
+        item.position
+          .toUpperCase()
+          .includes(filterByTitleValue.toUpperCase())) && item.contract === 'Full Time'
+      );
+    })
+  }
+
+  const filterByTitleAndLocation = () =>{
+    tempArr = fetchedData.filter((item)=>{
+      return item.position.toLowerCase().includes(filterByTitleValue.toLowerCase()) && item.location.toLowerCase().includes(props.modalState.locationValue.toLowerCase()) || item.position.toUpperCase().includes(filterByTitleValue.toUpperCase()) && item.location.toUpperCase().includes(props.modalState.locationValue.toUpperCase()) || item.position.toUpperCase().includes(filterByTitleValue.toUpperCase()) && item.location.toLowerCase().includes(props.modalState.locationValue.toLowerCase()) || item.position.toLowerCase().includes(filterByTitleValue.toLowerCase()) && item.location.toUpperCase().includes(props.modalState.locationValue.toUpperCase()) 
+    })
+  }
+  const filterByContract = () =>{
+    tempArr = fetchedData.filter((item)=>{
+      return item.contract === 'Full Time';
+    })
+  }
+
   useEffect(() => {
-    if (isClicked || searchBtnIsClicked || props.modalState.isSubmitted) {
+    if (isClicked) {
+      console.log('egaa');
       if (isEmpty) {
         setFilteredArr(fetchedData);
-        setIsClicked(false);
-        setSearchBtnIsClicked(false);
-      }else if(props.modalState.isChecked && !isEmpty){
-        const tempArr = fetchedData.filter((item) => {
-          return (
-            (item.position.includes(filterByTitleValue) ||
-            item.position
-              .toLowerCase()
-              .includes(filterByTitleValue.toLowerCase()) ||
-            item.position
-              .toUpperCase()
-              .includes(filterByTitleValue.toUpperCase())) &&  item.contract === "Full Time"
-          );
-        });
-        setSearchBtnIsClicked(false);
-        setFilteredArr(tempArr);
-      }
+          setIsClicked(false);  
+          
+      } 
        else {
-        const tempArr = fetchedData.filter((item) => {
-          return (
-            item.position.includes(filterByTitleValue) ||
-            item.position
-              .toLowerCase()
-              .includes(filterByTitleValue.toLowerCase()) ||
-            item.position
-              .toUpperCase()
-              .includes(filterByTitleValue.toUpperCase())
-          );
-        });
+        console.log('ha')
+        filterByTitle();
         setIsClicked(false);
-        setSearchBtnIsClicked(false);
-        setFilteredArr(tempArr);
       }
-      props.setIsFilterClicked(false);
+      setFilteredArr(tempArr); 
     }
-    if (props.modalState.isSubmitted && isEmpty) {
-      if (!props.modalState.isChecked) {
-      
-        const tempArr = fetchedData.filter((item) => {
-          return (
-            item.location.includes(props.modalState.locationValue) ||
-            item.location
-              .toLowerCase()
-              .includes(props.modalState.locationValue.toLowerCase()) ||
-            item.location
-              .toUpperCase()
-              .includes(props.modalState.locationValue.toUpperCase())
-          );
-        });
-        setFilteredArr(tempArr);
-      } else {
-        const tempArr = fetchedData.filter((item) => {
-          return (
-          (item.location.includes(props.modalState.locationValue) ||
-            item.location
-              .toLowerCase()
-              .includes(props.modalState.locationValue.toLowerCase()) ||
-            item.location
-              .toUpperCase()
-              .includes(props.modalState.locationValue.toUpperCase())) &&
-              item.contract === "Full Time")
-          ;
-        });
-        setFilteredArr(tempArr);
-      }
-      props.setIsFilterClicked(false);
-      props.setModalState({...props.modalState,isSubmitted:!props.modalState.isSubmitted});
-    }
-  }, [isClicked, props.modalState.isSubmitted,searchBtnIsClicked]);
+ console.log(isEmpty);
+  const filteringByLocationAndContract = props.modalState.locationValue!=='' && props.modalState.isChecked;
+  const filteringByTitleAndContract = filterByTitleValue!=='' && props.modalState.isChecked;
+  const filteringByTitle = filterByTitleValue !== '' && props.modalState.locationValue ==='' && !props.modalState.isChecked;
+  const filteringByLocation = props.modalState.locationValue!=='' && filterByTitleValue ==='' && !props.modalState.isChecked;
+  const filteringByTitleAndLocation = filterByTitleValue!=='' && props.modalState.locationValue!=='' && !props.modalState.isChecked
+  const filteringByContract = filterByTitleValue === '' && props.modalState.locationValue ==='' && props.modalState.isChecked
 
+    if (props.modalState.isSubmitted) {
+      if(filteringByTitle){
+        filterByTitle();
+      }else if(filteringByLocation){
+        filterByLocation();
+      }else if(filteringByTitleAndContract){
+        filterByTitleAndContract();
+        console.log('contract');
+      }else if(filteringByLocationAndContract){
+        filterByLocationAndContract();
+      }else if(filteringByTitleAndLocation){
+        filterByTitleAndLocation();
+      }
+      else if(filteringByContract){   
+        filterByContract();
+      }else{
+        tempArr = fetchedData;
+      }
+      setFilteredArr(tempArr); 
+      props.setIsFilterClicked(false);
+    }
+  return  () =>{
+      props.setModalState({...props.modalState,isSubmitted:false});
+    }
+  }, [isClicked, props.modalState.isSubmitted]);
+  
   return (
     <div className="pb-[62px]">
       <Filter
@@ -106,7 +153,7 @@ const LandingPage = (props: {
         setModalState={props.setModalState}
         modalState={props.modalState}
         isDark={props.isDark}
-        setSearchBtnIsClicked = {setSearchBtnIsClicked}
+        
       />
       <div className="flex flex-col items-center gap-[49px] md:flex-row md:flex-wrap md:justify-center">
         {filteredArr.map((item) => {

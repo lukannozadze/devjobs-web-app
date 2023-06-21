@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen max-h-fit  relative font-kumbh ${
+      className={`min-h-screen max-h-fit  relative font-kumbh overflow-x-hidden ${
         isDark ? "bg-[#121721]" : "bg-[#F2F2F2]"
       } duration-500`}
     >

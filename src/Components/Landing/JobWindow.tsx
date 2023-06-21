@@ -31,7 +31,7 @@ const JobWindow = (props: props) => {
       }}
       className={`${
         isDark ? "bg-[#19202D]" : "bg-white"
-      } w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative font-kumbh cursor-pointer duration-500 lg:w-[350px]`}
+      } w-[327px] pl-[32px] pt-[49px] pb-[32px] rounded-md relative font-kumbh cursor-pointer duration-500`}
     >
       <div
         className={`w-[50px] h-[50px] rounded-[15px] flex justify-center items-center absolute top-0 left-[32px] -translate-y-[50%]`}
@@ -48,7 +48,7 @@ const JobWindow = (props: props) => {
         <h2
           className={`leading-[24.8px] font-bold ${
             props.isDark ? "text-white" : "text-[#19202D]"
-          } text-[20px] duration-500`}
+          } text-[19px] duration-500`}
         >
           {position}
         </h2>

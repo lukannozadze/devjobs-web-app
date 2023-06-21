@@ -13,8 +13,12 @@ const SearchIcon = (props: {
         xmlns="http://www.w3.org/2000/svg"
         className={props.class}
         onClick={(e) => {
-          e.preventDefault();
-          props.setIsClicked(true);
+          if(props.inputVal===''){
+            e.preventDefault();
+          }else{
+            e.preventDefault();
+            props.setIsClicked(true);
+          }
         }}
       >
         <rect width="48" height="48" rx="5" fill="#5964E0" />

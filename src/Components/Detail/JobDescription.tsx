@@ -34,7 +34,7 @@ const JobDescription = (props: { active: number; isDark: boolean }) => {
             </span>
           </div>
           <div className="flex justify-center md:items-center">
-            <button className="w-[279px] py-4 px-[54px] bg-[#5964E0] rounded-[5px] text-base leading-[19.86px] text-white font-bold mb-[32px] md:mb-0 md:px-[28px] md:w-[141px]">
+            <button className="w-[279px] py-4 px-[54px] bg-[#5964E0] rounded-[5px] text-base leading-[19.86px] text-white font-bold mb-[32px] md:mb-0 md:px-[28px] md:w-[141px] hover:bg-[#939BF4]">
               Apply Now
             </button>
           </div>
@@ -112,7 +112,7 @@ const JobDescription = (props: { active: number; isDark: boolean }) => {
             </span>
           </div>
         )}
-        <button className="bg-[#5964E0] text-base leading-[19.86px] font-bold text-white w-[327px] py-4 rounded-[5px] md:w-[141px]">
+        <button className="bg-[#5964E0] text-base leading-[19.86px] font-bold text-white w-[327px] py-4 rounded-[5px] md:w-[141px] hover:bg-[#939BF4]">
           Apply Now
         </button>
       </div>
